@@ -85,7 +85,7 @@ class FormLoginState extends State<FormLogin> {
                     decoration: InputDecoration(
                       border: const UnderlineInputBorder(),
                       labelText: 'Digite sua senha',
-                      prefixIcon: const Icon(Icons.password),
+                      prefixIcon: const Icon(Icons.lock),
                       suffixIcon: IconButton(
                         /// A ternary operator. It is a shorthand way of writing an if-else statement.
                         icon: Icon(_isObscure
@@ -116,35 +116,56 @@ class FormLoginState extends State<FormLogin> {
                       return null;
                     },
                   ),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'Esqueci minha senha',
-                      style: TextStyle(color: Colors.blue, fontSize: 12),
-                    ),
-                  ),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        TextButton(
+                          onPressed: () {},
+                          child: const Text(
+                            'Esqueci minha senha',
+                            style: TextStyle(color: Colors.blue, fontSize: 12),
+                          ),
+                        ),
+                      ]),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Container(
+                          height: 50,
+                          width: 150,
+                          margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),
+                          decoration: BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              // Validate returns true if the form is valid, or false otherwise.
+                              if (_formKey.currentState!.validate()) {
+                                // If the form is valid, display a snackbar. In the real world,
+                                // you'd often call a server or save the information in a database.
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Text('Carregando...')),
+                                );
+                              }
+                            },
+                            child: const Text('Login',
+                                style: TextStyle(fontSize: 24)),
+                          ),
+                        ),
+                      ]),
                   Container(
-                    height: 50,
-                    width: 150,
-                    margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),
-                    decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // Validate returns true if the form is valid, or false otherwise.
-                        if (_formKey.currentState!.validate()) {
-                          // If the form is valid, display a snackbar. In the real world,
-                          // you'd often call a server or save the information in a database.
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Carregando...')),
-                          );
-                        }
-                      },
-                      child:
-                          const Text('Login', style: TextStyle(fontSize: 24)),
+                    margin: const EdgeInsets.fromLTRB(0, 150, 0, 0),
+                    child: TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                        'Ainda não possui uma conta? Cadastre-se!',
+                        style: TextStyle(color: Colors.black, fontSize: 12),
+                      ),
                     ),
-                  ),
+                  )
                 ]),
           ),
         ),
