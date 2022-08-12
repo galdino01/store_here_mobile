@@ -24,23 +24,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Store Here'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text(
-            'Login',
-            style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
-          ),
-          const FormLogin(),
-          TextButton(
-            onPressed: () {},
-            child: const Text(
-              'Esqueci minha senha',
-              style: TextStyle(color: Colors.blue, fontSize: 12),
-            ),
-          ),
-        ],
-      ),
+      body: const FormLogin(),
     );
   }
 }
@@ -53,6 +37,13 @@ class FormLogin extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(25),
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Container(
+          margin: const EdgeInsets.fromLTRB(0, 0, 0, 50),
+          child: const Text(
+            'Acesse sua conta',
+            style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+          ),
+        ),
         TextFormField(
           decoration: const InputDecoration(
               border: UnderlineInputBorder(),
@@ -68,6 +59,30 @@ class FormLogin extends StatelessWidget {
               labelText: 'Digite sua senha',
               prefixIcon: Icon(Icons.password)),
         ),
+        TextButton(
+          onPressed: () {},
+          child: const Text(
+            'Esqueci minha senha',
+            style: TextStyle(color: Colors.blue, fontSize: 12),
+          ),
+        ),
+        Container(
+          height: 50,
+          width: 250,
+          margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),
+          decoration: BoxDecoration(
+              color: Colors.blue, borderRadius: BorderRadius.circular(20)),
+          child: TextButton(
+            onPressed: () {},
+            child: const Text(
+              'Login',
+              style: TextStyle(
+                  color: Colors.white,
+                  backgroundColor: Colors.blue,
+                  fontSize: 25),
+            ),
+          ),
+        )
       ]),
     );
   }

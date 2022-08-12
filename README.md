@@ -1,4 +1,4 @@
-# stokki_mobile_app
+# store_here_mobile
 
 A new Flutter project.
 
