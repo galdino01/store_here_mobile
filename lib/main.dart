@@ -48,8 +48,35 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-      body: ,
+      body: const FormLogin(),
     );
   }
 }
 
+class FormLogin extends StatelessWidget {
+  const FormLogin({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(25),
+      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        TextFormField(
+          decoration: const InputDecoration(
+              border: UnderlineInputBorder(),
+              labelText: 'Digite seu email',
+              prefixIcon: Icon(Icons.alternate_email)),
+        ),
+        TextFormField(
+          obscureText: true,
+          obscuringCharacter: '*',
+          onChanged: (String? value) {},
+          decoration: const InputDecoration(
+              border: UnderlineInputBorder(),
+              labelText: 'Digite sua senha',
+              prefixIcon: Icon(Icons.password)),
+        ),
+      ]),
+    );
+  }
+}
