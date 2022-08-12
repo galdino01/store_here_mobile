@@ -23,32 +23,24 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Store Here'),
-        backgroundColor: Colors.blue,
       ),
-      drawer: Drawer(
-        backgroundColor: Colors.blue,
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              child: Text('Store Here'),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text(
+            'Login',
+            style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+          ),
+          const FormLogin(),
+          TextButton(
+            onPressed: () {},
+            child: const Text(
+              'Esqueci minha senha',
+              style: TextStyle(color: Colors.blue, fontSize: 12),
             ),
-            ListTile(
-              title: const Text('Produtos'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Clientes'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
-      body: const FormLogin(),
     );
   }
 }
