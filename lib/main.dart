@@ -40,6 +40,7 @@ class FormLogin extends StatefulWidget {
 
 class FormLoginState extends State<FormLogin> {
   final _formKey = GlobalKey<FormState>();
+  bool _isObscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -66,26 +67,54 @@ class FormLoginState extends State<FormLogin> {
                         border: UnderlineInputBorder(),
                         labelText: 'Digite seu email',
                         prefixIcon: Icon(Icons.alternate_email)),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
+                    validator: (email) {
+                      if (email == null || email.isEmpty) {
                         return 'O campo email não pode estar vazio!';
                       }
                       if (!RegExp(
                               r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                          .hasMatch(value)) {
+                          .hasMatch(email)) {
                         return 'Digite o email corretamente! Ex: usuario.mundo@email.com';
                       }
                       return null;
                     },
                   ),
                   TextFormField(
-                    obscureText: true,
+                    obscureText: _isObscure,
                     obscuringCharacter: '*',
-                    onChanged: (String? value) {},
-                    decoration: const InputDecoration(
-                        border: UnderlineInputBorder(),
-                        labelText: 'Digite sua senha',
-                        prefixIcon: Icon(Icons.password)),
+                    decoration: InputDecoration(
+                      border: const UnderlineInputBorder(),
+                      labelText: 'Digite sua senha',
+                      prefixIcon: const Icon(Icons.password),
+                      suffixIcon: IconButton(
+                        /// A ternary operator. It is a shorthand way of writing an if-else statement.
+                        icon: Icon(_isObscure
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                        onPressed: () {
+                          setState(() {
+                            _isObscure = !_isObscure;
+                          });
+                        },
+                      ),
+                    ),
+                    validator: (password) {
+                      if (password == null || password.isEmpty) {
+                        return 'O campo senha não pode estar vazio!';
+                      }
+                      if (!RegExp(
+                              r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
+                          .hasMatch(password)) {
+                        return 'Digite uma senha válida!'
+                            '\n\nA senha deve ser composta por pelo menos:'
+                            '\n- Um caractere especial.'
+                            '\n- Um caractere maiúsculo.'
+                            '\n- Um caractere minúsculo.'
+                            '\n- Um número.'
+                            '\n- 8 digitos.';
+                      }
+                      return null;
+                    },
                   ),
                   TextButton(
                     onPressed: () {},
